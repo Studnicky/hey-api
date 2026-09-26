@@ -522,11 +522,10 @@ export function operationReturnType({
   if (isNuxt) {
     const inner = requestResult
       .generic(nuxtTypeComposable)
-      .generic($.type.or(queryType('response'), nuxtTypeDefault));
-    // RequestResult's third parameter is TError, which is what the call passes
-    return isSse
-      ? $.type('Promise').generic(sseResult.generic(inner.generic('unknown')))
-      : inner.generic(queryType('error'));
+      .generic($.type.or(queryType('response'), nuxtTypeDefault))
+      // RequestResult's third parameter is TError, which is what the call passes
+      .generic(queryType('error'));
+    return isSse ? $.type('Promise').generic(sseResult.generic(inner)) : inner;
   }
 
   if (isSse) {

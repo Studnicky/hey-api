@@ -2,7 +2,7 @@ import type { Config } from '../../../config/types';
 import type { PluginClientNames } from '../../types';
 
 /** Clients implementing `responseStyle`. The rest have no `TResponseStyle` type parameter. */
-const clientsWithResponseStyle: ReadonlySet<string> = new Set([
+const clientsWithResponseStyle: ReadonlySet<PluginClientNames> = new Set([
   '@hey-api/client-angular',
   '@hey-api/client-fetch',
   '@hey-api/client-ky',
